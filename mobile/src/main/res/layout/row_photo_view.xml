@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="data"
+            type="com.hlabexamples.commonmvp.data.PhotoModel" />
+
+        <variable
+            name="presenter"
+            type="com.hlabexamples.tripplanner.modules.home.detail.PhotoAdapter.PhotoListener" />
+    </data>
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="140dp"
+        android:padding="1dp"
+        android:background="@drawable/bg_photo_border"
+        android:elevation="5dp">
+
+        <ImageView
+            android:id="@+id/imgPhoto"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:onClick="@{()->presenter.onClick()}"
+            android:scaleType="fitCenter"
+            app:imageUrl="@{data.url}"
+            android:background="#20CCCCCC"
+            android:src="@drawable/img_3"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:placeholder="@{@drawable/ic_placeholder}" />
+
+        <ImageButton
+            android:id="@+id/imgDelete"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:onClick="@{()->presenter.onDelete()}"
+            android:padding="5dp"
+            android:background="#20CCCCCC"
+            android:tint="@color/colorPrimaryDark"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_delete" />
+    </android.support.constraint.ConstraintLayout>
+</layout>

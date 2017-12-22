@@ -1,0 +1,43 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion compileSdk
+
+    defaultConfig {
+        applicationId "com.hlabexamples.tripplanner"
+        minSdkVersion minSdkWear
+        targetSdkVersion targetSdk
+        versionCode 1
+        versionName "1.0"
+        vectorDrawables.useSupportLibrary = true
+        resConfig("en")
+        dataBinding {
+            enabled true
+        }
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    configurations.all {
+        resolutionStrategy.force "com.android.support:support-v4:$supportLibrary"
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation "com.android.support:percent:$supportLibrary"
+    implementation "com.android.support:wear:$supportLibrary"
+    implementation "com.google.android.support:wearable:$wearable"
+    compileOnly "com.google.android.wearable:wearable:$wearable"
+
+    compile project(':commonmvp')
+}
+
+apply plugin: 'com.google.gms.google-services'
