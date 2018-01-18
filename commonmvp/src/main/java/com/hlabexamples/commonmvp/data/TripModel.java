@@ -1,6 +1,5 @@
 package com.hlabexamples.commonmvp.data;
 
-import com.google.android.gms.wearable.DataMap;
 import com.google.firebase.database.Exclude;
 import com.google.firebase.database.IgnoreExtraProperties;
 
@@ -20,17 +19,13 @@ public class TripModel {
     private int imageId;
     private int isFavourite;
 
-
     public TripModel() {
     }
 
-    public TripModel(DataMap dataMap) {
-        this.id = dataMap.getString("id");
-        this.title = dataMap.getString("title");
-        this.startDate = dataMap.getString("startDate");
-        this.endDate = dataMap.getString("endDate");
-        this.imageId = dataMap.getInt("imageId");
-        this.isFavourite = dataMap.getInt("isFavourite");
+    public TripModel(String title, String startDate, String endDate) {
+        this.title = title;
+        this.startDate = startDate;
+        this.endDate = endDate;
     }
 
     @Exclude
@@ -45,17 +40,6 @@ public class TripModel {
         return result;
     }
 
-    @Exclude
-    public DataMap toDataMap() {
-        DataMap result = new DataMap();
-        result.putString("id", id);
-        result.putString("title", title);
-        result.putString("startDate", startDate);
-        result.putString("endDate", endDate);
-        result.putInt("imageId", imageId);
-        result.putInt("isFavourite", isFavourite);
-        return result;
-    }
 
     public String getId() {
         return id;

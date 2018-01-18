@@ -1,6 +1,5 @@
 package com.hlabexamples.tripplanner.modules.home;
 
-import android.app.Activity;
 import android.app.Fragment;
 import android.os.Bundle;
 import android.support.design.widget.BottomNavigationView;
@@ -33,6 +32,20 @@ public class MainActivity extends BaseBindingActivity<ActivityMainBinding> {
 
     @Override
     protected void initView() {
+
+//        Toolbar toolbar = findViewById(R.id.toolbar);
+//        toolbar.inflateMenu(R.menu.menu_home);
+//        toolbar.setOnMenuItemClickListener(item -> {
+//            if (item.getItemId() == R.id.action_watch) {
+//                Fragment child = getFragmentManager().findFragmentByTag(BrowseAttractionFragment.class.getSimpleName());
+//                if (child != null && child instanceof BrowseAttractionFragment) {
+////                    increaseCounter(((BrowseAttractionFragment) child).getItems());
+//                }
+//                return true;
+//            }
+//            return false;
+//        });
+
         BottomNavigationView navigation = findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         navigation.setSelectedItemId(R.id.navigation_home);
@@ -43,17 +56,37 @@ public class MainActivity extends BaseBindingActivity<ActivityMainBinding> {
 
     }
 
+//    private void increaseCounter(List<TripModel> items) {
+//        PutDataMapRequest putDataMapReq = PutDataMapRequest.create("/count");
+//
+//        Log.e("App", "Sending "+items.size());
+//
+//        ArrayList<DataMap> map = new ArrayList<>();
+//        for (TripModel model : items) {
+//            map.add(DataLayerManager.toDataMap(model));
+//        }
+//        putDataMapReq.getDataMap().putDataMapArrayList(DataLayerManager.DATA_KEY, map);
+////        putDataMapReq.getDataMap().putInt(DataLayerManager.DATA_KEY, 123);
+//        PutDataRequest putDataReq = putDataMapReq.asPutDataRequest();
+//        putDataReq.setUrgent();
+//
+//        Task<DataItem> putDataTask = Wearable.getDataClient(this).putDataItem(putDataReq);
+//        putDataTask
+//                .addOnSuccessListener(dataItem -> Toast.makeText(MainActivity.this, "Sent to watch", Toast.LENGTH_SHORT).show())
+//                .addOnFailureListener(e -> Toast.makeText(MainActivity.this, "Failed", Toast.LENGTH_SHORT).show());
+//    }
+
     private void showFragmentWithType(ItemType type) {
         Fragment fragment = new BrowseAttractionFragment();
         Bundle bundle = new Bundle();
         bundle.putSerializable(Constants.ARG_TYPE, type);
         fragment.setArguments(bundle);
-        replaceFragment(this, R.id.container, fragment);
+        replaceFragment(R.id.container, fragment);
     }
 
 
-    private void replaceFragment(Activity context, int container, Fragment targetFragment) {
-        context.getFragmentManager()
+    private void replaceFragment(int container, Fragment targetFragment) {
+        getFragmentManager()
                 .beginTransaction()
                 .setCustomAnimations(
                         R.animator.enter,
@@ -62,4 +95,6 @@ public class MainActivity extends BaseBindingActivity<ActivityMainBinding> {
                 .replace(container, targetFragment, targetFragment.getClass().getSimpleName())
                 .commit();
     }
+
+
 }

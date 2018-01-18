@@ -134,4 +134,8 @@ public class BrowseAttractionAdapter extends RecyclerView.Adapter<BrowseAttracti
             fragment.changeFavorite(model.getId(), model.isFavourite() == 0 ? 1 : 0);
         }
     }
+
+    public List<TripModel> getItems() {
+        return items;
+    }
 }

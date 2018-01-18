@@ -5,10 +5,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
-import android.util.Log;
 import android.view.View;
 
-import com.google.android.gms.wearable.Wearable;
 import com.hlabexamples.commonmvp.base.BaseBindingFragment;
 import com.hlabexamples.commonmvp.base.mvp.callback.ICallbackListener;
 import com.hlabexamples.commonmvp.data.TripModel;
@@ -19,6 +17,8 @@ import com.hlabexamples.tripplanner.databinding.FragmentBrowseAttractionsBinding
 import com.hlabexamples.tripplanner.modules.add.AddTripActivity;
 import com.hlabexamples.tripplanner.modules.home.detail.DetailFragment;
 import com.hlabexamples.tripplanner.utils.Constants;
+
+import java.util.List;
 
 public class BrowseAttractionFragment extends BaseBindingFragment<FragmentBrowseAttractionsBinding> implements BrowseContract.BrowseView,
         SwipeRefreshLayout.OnRefreshListener, View.OnClickListener {
@@ -74,9 +74,8 @@ public class BrowseAttractionFragment extends BaseBindingFragment<FragmentBrowse
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.btnAdd) {
-//            Intent intent = new Intent(getActivity(), AddTripActivity.class);
-//            startActivity(intent);
-
+            Intent intent = new Intent(getActivity(), AddTripActivity.class);
+            startActivity(intent);
         }
     }
 
@@ -157,4 +156,7 @@ public class BrowseAttractionFragment extends BaseBindingFragment<FragmentBrowse
 
     }
 
+    public List<TripModel> getItems(){
+        return adapter.getItems();
+    }
 }

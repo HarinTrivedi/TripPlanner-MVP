@@ -35,9 +35,10 @@ dependencies {
     implementation "com.android.support:percent:$supportLibrary"
     implementation "com.android.support:wear:$supportLibrary"
     implementation "com.google.android.support:wearable:$wearable"
-    compileOnly "com.google.android.wearable:wearable:$wearable"
+    provided "com.google.android.wearable:wearable:$wearable"
+
+    compile "com.google.android.gms:play-services-wearable:$firebase"
 
     compile project(':commonmvp')
 }
 
-apply plugin: 'com.google.gms.google-services'

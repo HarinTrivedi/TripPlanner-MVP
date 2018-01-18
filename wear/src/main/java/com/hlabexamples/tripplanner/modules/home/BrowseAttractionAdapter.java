@@ -6,9 +6,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
-import com.hlabexamples.commonmvp.base.mvp.callback.IFirebaseCallbackListener;
 import com.hlabexamples.commonmvp.data.TripModel;
-import com.hlabexamples.commonmvp.weardatalayer.DataLayerManager;
 import com.hlabexamples.tripplanner.R;
 import com.hlabexamples.tripplanner.databinding.RowItemAttractionBinding;
 
@@ -21,51 +19,12 @@ import java.util.List;
 
 public class BrowseAttractionAdapter extends RecyclerView.Adapter<BrowseAttractionAdapter.BrowseItemHolder> {
 
-    private List<String> ids = new ArrayList<>();
     private List<TripModel> items = new ArrayList<>();
     private LayoutInflater inflater;
-    private IFirebaseCallbackListener<TripModel> iFirebaseCallbackListener;
 
     BrowseAttractionAdapter(Context context) {
         inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        this.iFirebaseCallbackListener = new IFirebaseCallbackListener<TripModel>() {
-            @Override
-            public void childAdded(TripModel trip) {
-                ids.add(trip.getId());
-                items.add(trip);
-                notifyItemInserted(items.size() - 1);
 
-                DataLayerManager.getInstance(context).sendData(trip, null);
-            }
-
-            @Override
-            public void childChanged(TripModel trip) {
-                String id = trip.getId();
-
-                int index = ids.indexOf(id);
-                if (index > -1) {
-                    items.set(index, trip);
-                    notifyItemChanged(index);
-                }
-            }
-
-            @Override
-            public void childRemoved(TripModel trip) {
-                String id = trip.getId();
-
-                int index = ids.indexOf(id);
-                if (index > -1) {
-                    ids.remove(index);
-                    items.remove(index);
-                    notifyItemRemoved(index);
-                }
-            }
-
-            @Override
-            public void onFailure(Throwable t) {
-
-            }
-        };
     }
 
     @Override
@@ -85,13 +44,16 @@ public class BrowseAttractionAdapter extends RecyclerView.Adapter<BrowseAttracti
         return items.size();
     }
 
-    void clear() {
+    public void clear() {
         items.clear();
         notifyDataSetChanged();
     }
 
-    IFirebaseCallbackListener<TripModel> getiFirebaseCallbackListener() {
-        return iFirebaseCallbackListener;
+    public void addItems(List<TripModel> items) {
+        if (items != null) {
+            this.items.addAll(items);
+            notifyDataSetChanged();
+        }
     }
 
     class BrowseItemHolder extends RecyclerView.ViewHolder {
