@@ -11,17 +11,8 @@
     <string name="title_fav">Favourites</string>
 
     <string name="ok">OK</string>
-    <string name="yes">Yes</string>
-    <string name="no">No</string>
     <string name="cancel">Cancel</string>
-    <string name="done">Done</string>
-    <string name="next">NEXT</string>
-    <string name="back">BACK</string>
-    <string name="submit">SUBMIT</string>
-    <string name="update">UPDATE</string>
     <string name="settings">SETTINGS</string>
-    <string name="loading">Loading&#8230;</string>
-    <string name="share">Share</string>
     <string name="title_home">Home</string>
     <string name="alert_no_connection">Check your internet connection</string>
     <string name="alert">Alert</string>

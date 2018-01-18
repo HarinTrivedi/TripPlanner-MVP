@@ -3,10 +3,13 @@ package com.hlabexamples.tripplanner.modules.home.browse;
 import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.hlabexamples.commonmvp.base.BaseBindingFragment;
 import com.hlabexamples.commonmvp.base.mvp.callback.ICallbackListener;
 import com.hlabexamples.commonmvp.data.TripModel;
@@ -16,6 +19,7 @@ import com.hlabexamples.tripplanner.R;
 import com.hlabexamples.tripplanner.databinding.FragmentBrowseAttractionsBinding;
 import com.hlabexamples.tripplanner.modules.add.AddTripActivity;
 import com.hlabexamples.tripplanner.modules.home.detail.DetailFragment;
+import com.hlabexamples.tripplanner.modules.start.login.LoginActivity;
 import com.hlabexamples.tripplanner.utils.Constants;
 
 import java.util.List;
@@ -47,7 +51,25 @@ public class BrowseAttractionFragment extends BaseBindingFragment<FragmentBrowse
 
     @Override
     protected void initToolbar() {
-
+        Toolbar toolbar = getView().findViewById(R.id.toolbar);
+        toolbar.getMenu().clear();
+        toolbar.inflateMenu(R.menu.menu_home);
+        toolbar.setOnMenuItemClickListener(item -> {
+            if (item.getItemId() == R.id.action_watch) {
+                // TODO: 18/01/18 pending
+//                Fragment child = getFragmentManager().findFragmentByTag(BrowseAttractionFragment.class.getSimpleName());
+//                if (child != null && child instanceof BrowseAttractionFragment) {
+//                    increaseCounter(((BrowseAttractionFragment) child).getItems());
+//                }
+                return true;
+            } else if (item.getItemId() == R.id.action_logout) {
+                FirebaseAuth.getInstance().signOut();
+                startActivity(new Intent(context, LoginActivity.class));
+                context.finish();
+                return true;
+            }
+            return false;
+        });
     }
 
     protected void checkArguments(Bundle bundle) {
@@ -81,7 +103,10 @@ public class BrowseAttractionFragment extends BaseBindingFragment<FragmentBrowse
 
     @Override
     public void fetchTrips(ItemType itemType) {
+        showProgress();
         interacter.getTrips(itemType.getType());
+
+        new Handler().postDelayed(this::hideProgress, 2000);
     }
 
     @Override
@@ -141,6 +166,27 @@ public class BrowseAttractionFragment extends BaseBindingFragment<FragmentBrowse
             getBinding().swipeRefreshLayout.setRefreshing(false);
     }
 
+    // TODO: 18/01/18 pending
+//    private void increaseCounter(List<TripModel> items) {
+//        PutDataMapRequest putDataMapReq = PutDataMapRequest.create("/count");
+//
+//        Log.e("App", "Sending "+items.size());
+//
+//        ArrayList<DataMap> map = new ArrayList<>();
+//        for (TripModel model : items) {
+//            map.add(DataLayerManager.toDataMap(model));
+//        }
+//        putDataMapReq.getDataMap().putDataMapArrayList(DataLayerManager.DATA_KEY, map);
+////        putDataMapReq.getDataMap().putInt(DataLayerManager.DATA_KEY, 123);
+//        PutDataRequest putDataReq = putDataMapReq.asPutDataRequest();
+//        putDataReq.setUrgent();
+//
+//        Task<DataItem> putDataTask = Wearable.getDataClient(this).putDataItem(putDataReq);
+//        putDataTask
+//                .addOnSuccessListener(dataItem -> Toast.makeText(MainActivity.this, "Sent to watch", Toast.LENGTH_SHORT).show())
+//                .addOnFailureListener(e -> Toast.makeText(MainActivity.this, "Failed", Toast.LENGTH_SHORT).show());
+//    }
+
     @Override
     public void showNoData() {
 
@@ -156,7 +202,7 @@ public class BrowseAttractionFragment extends BaseBindingFragment<FragmentBrowse
 
     }
 
-    public List<TripModel> getItems(){
+    public List<TripModel> getItems() {
         return adapter.getItems();
     }
 }

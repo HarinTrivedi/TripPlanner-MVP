@@ -30,6 +30,30 @@ public class BrowseAttractionActivity extends BaseWearableBindingActivity<Activi
     private BrowseAttractionAdapter adapter;
 //    private DataLayerManager dataLayerManager;
 
+    @Exclude
+    public static DataMap toDataMap(TripModel model) {
+        DataMap result = new DataMap();
+        result.putString("id", model.getId());
+        result.putString("title", model.getTitle());
+        result.putString("startDate", model.getStartDate());
+        result.putString("endDate", model.getEndDate());
+        result.putInt("imageId", model.getImageId());
+        result.putInt("isFavourite", model.isFavourite());
+        return result;
+    }
+
+    @Exclude
+    public static TripModel mapToData(DataMap data) {
+        TripModel result = new TripModel();
+        result.setId(data.getString("id"));
+        result.setTitle(data.getString("title"));
+        result.setStartDate(data.getString("startDate"));
+        result.setEndDate(data.getString("endDate"));
+        result.setImageId(data.getInt("imageId"));
+        result.setFavourite(data.getInt("isFavourite"));
+        return result;
+    }
+
     @Override
     protected int attachView() {
         return R.layout.activity_browse_attractions;
@@ -133,31 +157,6 @@ public class BrowseAttractionActivity extends BaseWearableBindingActivity<Activi
     @Override
     public void destroy() {
 
-    }
-
-
-    @Exclude
-    public static DataMap toDataMap(TripModel model) {
-        DataMap result = new DataMap();
-        result.putString("id", model.getId());
-        result.putString("title", model.getTitle());
-        result.putString("startDate", model.getStartDate());
-        result.putString("endDate", model.getEndDate());
-        result.putInt("imageId", model.getImageId());
-        result.putInt("isFavourite", model.isFavourite());
-        return result;
-    }
-
-    @Exclude
-    public static TripModel mapToData(DataMap data) {
-        TripModel result = new TripModel();
-        result.setId(data.getString("id"));
-        result.setTitle(data.getString("title"));
-        result.setStartDate(data.getString("startDate"));
-        result.setEndDate(data.getString("endDate"));
-        result.setImageId(data.getInt("imageId"));
-        result.setFavourite(data.getInt("isFavourite"));
-        return result;
     }
 
 }

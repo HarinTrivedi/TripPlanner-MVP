@@ -19,7 +19,7 @@
             android:layout_height="wrap_content"
             android:background="?colorPrimary"
             android:minHeight="?attr/actionBarSize"
-            android:theme="?attr/actionBarTheme"
+            android:theme="@style/AppTheme.AppBarOverlay"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/img"
             app:layout_constraintTop_toTopOf="parent" />
@@ -29,11 +29,11 @@
             android:layout_width="match_parent"
             android:layout_height="200dp"
             android:scaleType="centerCrop"
+            android:src="@drawable/ic_placeholder"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/toolbar"
-            android:src="@drawable/ic_placeholder" />
+            app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
         <android.support.design.widget.TextInputLayout
             android:id="@+id/tilTitle"
@@ -75,6 +75,7 @@
             android:layout_marginTop="8dp"
             android:onClick="@{listener::onClick}"
             android:text="Start Date"
+            android:textColor="@color/colorTitle"
             app:layout_constraintEnd_toStartOf="@+id/btnEnd"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
@@ -88,6 +89,7 @@
             android:layout_marginEnd="8dp"
             android:onClick="@{listener::onClick}"
             android:text="End Date"
+            android:textColor="@color/colorTitle"
             app:layout_constraintBaseline_toBaselineOf="@+id/btnStart"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
@@ -98,9 +100,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
-            android:onClick="@{listener::onClick}"
-            app:fabSize="normal"
             android:clickable="true"
+            android:onClick="@{listener::onClick}"
+            android:textColor="@color/colorTitle"
+            app:fabSize="normal"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"

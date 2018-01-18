@@ -95,6 +95,10 @@ public class BrowseAttractionAdapter extends RecyclerView.Adapter<BrowseAttracti
         return iFirebaseCallbackListener;
     }
 
+    public List<TripModel> getItems() {
+        return items;
+    }
+
     public interface BrowseItemListener {
         void onClick();
 
@@ -133,9 +137,5 @@ public class BrowseAttractionAdapter extends RecyclerView.Adapter<BrowseAttracti
             TripModel model = items.get(getAdapterPosition());
             fragment.changeFavorite(model.getId(), model.isFavourite() == 0 ? 1 : 0);
         }
-    }
-
-    public List<TripModel> getItems() {
-        return items;
     }
 }

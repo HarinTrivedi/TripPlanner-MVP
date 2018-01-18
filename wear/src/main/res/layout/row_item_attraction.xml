@@ -55,10 +55,10 @@
                 android:textColor="@color/colorWhite"
                 android:textSize="20sp"
                 android:textStyle="normal|bold"
+                android:transitionName="title"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/imgFav"
                 app:layout_constraintStart_toStartOf="@+id/view"
-                android:transitionName="title"
                 tools:text="Title" />
 
             <ImageView

@@ -74,7 +74,7 @@ public class BrowseTripInteracter {
         this.callbackListener = callbackListener;
 
         mDatabase = FirebaseDatabase.getInstance().getReference();
-        uid = "E4k8XTPjGkZUGD8UU1DZ0Mv5YSc2";//FirebaseAuth.getInstance().getCurrentUser().getUid();
+        uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
         query = mDatabase.child(TRIPS).child(uid);
     }
@@ -84,7 +84,7 @@ public class BrowseTripInteracter {
         if (type == 0)
             query.orderByKey().addChildEventListener(childEventListener);
         else
-            query.orderByChild("isFavourite").equalTo(true).addChildEventListener(childEventListener); // Fetch favorite trips
+            query.orderByChild("isFavourite").equalTo(1).addChildEventListener(childEventListener); // Fetch favorite trips
 
     }
 
