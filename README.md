@@ -4,6 +4,7 @@
 
 > _A demonstration application which allows us to implement MVP architecture pattern with a more simple and robust way. It includes use of firebase as a backend platform and a modular approach for making it reusable in future_
 
+**Based on my blog series : [MVP Redifined on medium.com](https://medium.com/@Harry91/mvp-redefined-a-reusable-base-part1-b024787de79f)**
 
 ## Setup
 
