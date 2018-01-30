@@ -48,7 +48,6 @@ Guide : [https://firebase.google.com/docs/android/setup](Firebase)
 
 **//TODO : Connecting with Wear data-layer**
 
-
 ***
 
 ### [@Harry's Lab](https://github.com/HarinTrivedi)
