@@ -42,7 +42,7 @@ Guide : [https://firebase.google.com/docs/android/setup](Firebase)
 
 **If you wish to see how can mvp be done with RxJava and Retrofit, here is a good quickstart demo:**
 
-**[https://github.com/HarinTrivedi/RxJava2Retrofit2Demo-master](RxJava-Retrofit)**
+**[Rxjava-Retrofit](https://github.com/HarinTrivedi/RxJava2Retrofit2Demo-master)**
 
 ***
 
