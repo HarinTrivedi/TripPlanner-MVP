@@ -38,16 +38,5 @@ Guide : [https://firebase.google.com/docs/android/setup](Firebase)
 ![Add](https://i.imgur.com/SYyNMAK.png)  
 ![Detail](https://i.imgur.com/KyrLt5l.png)
 
-### RxJava
-
-**If you wish to see how can mvp be done with RxJava and Retrofit, here is a good quickstart demo:**
-
-**[Rxjava-Retrofit](https://github.com/HarinTrivedi/RxJava2Retrofit2Demo-master)**
-
-***
-
-**//TODO : Connecting with Wear data-layer**
-
-***
 
 ### [@Harry's Lab](https://github.com/HarinTrivedi)
